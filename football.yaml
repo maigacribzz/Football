@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: football-pod
+  labels:
+    app: football
+spec:
+  containers:
+    - name: football-container
+      image: maigacribzz/footballimage:v1
+      ports:
+        - containerPort: 8501
+      env:
+        - name: TEAM_NAME
+          value: "Wildcats"
+        - name: COACH_NAME
+          value: "Coach Carter"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: football-service
+spec:
+  selector:
+    app: football
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 8501
+      targetPort: 8501
+      nodePort: 30001
