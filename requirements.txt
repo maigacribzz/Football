@@ -1,3 +1,1 @@
-streamlit
-pandas
-base64
+streamlit==1.48.1
